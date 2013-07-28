@@ -1,0 +1,30 @@
+<html>
+<head>
+    <script type="text/javascript" src="js/less-1.4.1.min.js"></script>
+    <script type="text/javascript">
+        var wsLess = function () {
+            var parser = new(less.Parser)({
+                paths: ['.', './less'], // Specify search paths for @import directives
+                filename: 'less/test.less' // Specify a filename, for better error messages
+            });
+
+            parser.parse('@import "test.less";', function (e, tree) {
+                var css = tree.toCSS({ compress: true }); // Minify CSS output
+                document.getElementById("cssOutput").value = css;
+            });
+        }
+    </script>
+    <style type="text/css">
+        #cssOutput {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="cssOutput"></textarea>
+    <script type="text/javascript">
+        wsLess();
+    </script>
+</body>
+</html>
