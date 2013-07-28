@@ -2,7 +2,11 @@
 <head>
     <script type="text/javascript" src="js/less-1.4.1.min.js"></script>
     <script type="text/javascript">
-        var wsLess = function () {
+        var lesscUI = function () {
+            var lessFile = 'less/' + document.getElementById("lessFile").value;
+            if (!lessFile) {
+                return;
+            }
             var parser = new(less.Parser)({
                 paths: ['.', './less'], // Specify search paths for @import directives
                 filename: 'less/test.less' // Specify a filename, for better error messages
@@ -22,9 +26,13 @@
     </style>
 </head>
 <body>
+    <h1>A simple UI to compile LESS</h1>
+    <p>The LESS file need to be put into the less/ folder. </p>
+    <label>
+        LESS file: less/
+        <input type="text" id="lessFile" />
+    </label>
+    <input type="button" value="To CSS!" onclick="lesscUI();"/>
     <textarea id="cssOutput"></textarea>
-    <script type="text/javascript">
-        wsLess();
-    </script>
 </body>
 </html>
